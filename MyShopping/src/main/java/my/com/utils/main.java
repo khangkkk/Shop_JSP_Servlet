@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Map;import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import my.com.dao.UserDAO;
 import my.com.dao.impl.UserDAOImpl;
@@ -68,15 +69,34 @@ public class main {
 //		System.out.println(ud.isUsernameExist("admin"));
 //		
 //		int count = StringUtils.countMatches("String text", "char");
-		String sa="ba";
-		if(sa.isEmpty()) {
-			System.out.println("a");
-		}else if(sa.contains("a")) {
-			System.out.println("b");
-		}else if(sa.contains("b")) {
-			System.out.println("c");			
-		}else {
-			System.out.println("d");
-		}
+//		String sa="ba";
+//		if(sa.isEmpty()) {
+//			System.out.println("a");
+//		}else if(sa.contains("a")) {
+//			System.out.println("b");
+//		}else if(sa.contains("b")) {
+//			System.out.println("c");			
+//		}else {
+//			System.out.println("d");
+//		}
+		String a="1,2";
+		String[] words = a.split("\\,");
+		for (String w : words) {
+			   System.out.print(w);
+			  }
+		List<Integer> lst1 = new ArrayList<Integer>();
+		List<Integer> lst2 = new ArrayList<Integer>();
+		lst1.add(1);
+		lst1.add(1);
+		lst1.add(3);
+		lst1.add(4);
+		lst1.add(5);
+		
+		lst2.add(7);
+		lst2.add(6);
+		lst2.add(8);
+		lst2.add(4);
+		lst1=lst1.stream().distinct().filter(i-> !lst2.contains(i)).collect(Collectors.toList());
+		lst1.stream().forEach(System.out::print);
 	}
 }

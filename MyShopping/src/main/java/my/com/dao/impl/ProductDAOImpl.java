@@ -147,13 +147,13 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public boolean deleteProduct(int idProduct) throws SQLException {
+	public boolean deleteProduct(String idProduct) throws SQLException {
 		String sql = "DELETE FROM Product WHERE id_pro = ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, idProduct);
+			ps.setString(1, idProduct);
 			row = ps.executeUpdate();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -223,5 +223,71 @@ public class ProductDAOImpl implements ProductDAO {
 			arr.add(lst.get(i));
 		}
 		return arr;
+	}
+
+	@Override
+	public List<Product> getAllProduct(int row) throws SQLException {
+		String sql="SELECT id_pro,c.name_cat,name_pro,images,quantity,price,supplier,infor\r\n"
+				+ "FROM Product p, Category c\r\n"
+				+ "WHERE p.id_cat=c.id_cat\r\n"
+				+ "ORDER BY id_pro offset ? ROWS FETCH NEXT 3 ROWS only";
+		Product p = null;
+		List<Product> lst = new ArrayList<>();
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, row);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				p = new Product(rs.getInt("id_pro"), rs.getString("name_cat"), rs.getString("name_pro"),
+						rs.getString("images"), rs.getInt("quantity"), rs.getDouble("price"), rs.getString("supplier"),
+						rs.getString("infor"));
+				lst.add(p);
+			}			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return lst;
+	}
+
+	@Override
+	public int countTotalProduct() throws SQLException {
+		String sql="SELECT COUNT(*)\r\n"
+				+ "FROM Product";
+		int count = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+
+		return count;
 	}
 }

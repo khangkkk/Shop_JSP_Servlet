@@ -17,7 +17,9 @@
 	<div class="login-01">
 		<div class="one-login  hvr-float-shadow">
 			<div class="one-login-head">
-				<img src="<%=request.getContextPath()%>/resource/images/top-lock.png" alt="" />
+				<img
+					src="<%=request.getContextPath()%>/resource/images/top-lock.png"
+					alt="" />
 				<h1>LOGIN</h1>
 
 				<span></span>
@@ -34,12 +36,13 @@
 				%>
 				<li style="color: red"><%=err%></li> Username
 				<li><input type="text" class="text" value="" name="username"
-					required><a href="#" class=" icon user"></a></li> Password
-				<li><input type="password" value="" name="password" required><a
-					href="#" class=" icon lock"></a></li>
+					pattern="[a-zA-Z0-9]{4,24}" required><a href="#"
+					class=" icon user"></a></li> Password
+				<li><input type="password" value="" name="password" required
+					pattern="[.]{4,24}"><a href="#" class=" icon lock"></a></li>
 				<div class="p-container">
-					<input type="checkbox" name="remember" checked><i></i>Remember
-					me</label>
+					<input type="checkbox" name="remember" checked><i>Remember
+					me</i>
 					<h6>
 						<a href="#">Forgot your password?</a>
 					</h6>

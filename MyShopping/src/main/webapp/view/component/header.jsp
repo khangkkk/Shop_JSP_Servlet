@@ -29,14 +29,6 @@
 				<li class='last'><a href="#"><span>Cart</span></a></li>
 				<li class='last'><a
 					href="<%=request.getContextPath()%>/view/search_page.jsp"><span>Search</span></a></li>
-				<%
-				if (username.equals("test")) {
-				%>
-				<li class='last'><a href="listpro"><span>Manage
-							Product</span></a></li>
-				<%
-				}
-				%>
 				<li class='last' style="float: right;"><a
 					href="<%=request.getContextPath()%>/logout"><span>Logout</span></a></li>
 				<li class='last' style="float: right;"><a

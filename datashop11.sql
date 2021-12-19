@@ -43,21 +43,15 @@ CREATE TABLE Account
 	username	varchar(25)		NOT NULL,
 	salt_p		varchar(255)	NOT NULL,
 	hash_p		varchar(255)	NOT NULL,
-	[role]		bit				NOT NULL
-
-	CONSTRAINT PK_user_ID PRIMARY KEY(id_user)
-)
-GO
-CREATE TABLE AccountInformation(
-	id_user		int				NOT NULL,
-	[fullname]	nvarchar(50)	NOT NULL,
+	[role]		bit				NOT NULL,
+	[fullname]	nvarchar(50)	NULL,
 	dob			date			NULL,
 	gender		varchar(10)		NULL,
-	email		varchar(255)	NOT NULL,
-	phone		varchar(255)	NOT NULL,
+	email		varchar(255)	NULL,
+	phone		varchar(255)	NULL,
 	[address]	varchar(255)	NULL,
 
-	CONSTRAINT FK_user_ID FOREIGN KEY(id_user) REFERENCES Account(id_user)
+	CONSTRAINT PK_user_ID PRIMARY KEY(id_user)
 )
 GO
 CREATE TABLE [Order]
@@ -97,9 +91,5 @@ INSERT INTO Product VALUES (7, N'Non 2', N'non11.jpg', 2, 1200, N'NoO', N'Dang c
 INSERT INTO Product VALUES (2, N'Ao sale', N'nu2.jpg', 65, 9000, N'Omo', N'Dang cap nhat')
 INSERT INTO Product VALUES (7, N'Non', N'non.jpg', 15, 2000, N'Docle', N'Dang cap nhat')
 
---GO
---INSERT INTO Account VALUES ()
---GO
---INSERT INTO AccountInformation VALUES ()
---GO
---INSERT INTO [Order] VALUES ()
+GO
+INSERT INTO Account VALUES ('admin','4gGB8F8G','7352b346fd719df0b8018b408d3dba09195e2a060dbb9283ec119f2120b60dd245fbe67ea6e8f100fe7012980b55f55d96d5e7719f0c2fb02b0f36b7a0c0fcbd',1,'','','','','','')

@@ -1,0 +1,146 @@
+@charset "ISO-8859-1";
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.navbar {
+  overflow: hidden;
+  background-color: whitesmoke;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+  justify-content: center;
+}
+.dropdown a {
+  font-size: 20px;
+  color: rgb(212, 72, 96);
+  font-weight: bold;
+}
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: aquamarine;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  border-top: 1px solid red;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.main {
+  width: 100%;
+  float: left;
+}
+.nav {
+  width: 49%;
+  float: left;
+  max-height: 100%;
+  background-color: white;
+  border-right: 1px solid lightgrey;
+}
+.content {
+  width: 50%;
+  float: left;
+  max-height: 100%;
+  background-color: rgba(252, 249, 249, 0);
+  border-top: 1px solid lightgrey;
+}
+
+.right-content a {
+  text-decoration: none;
+  padding-left: 5px;
+  color: black;
+}
+.left-content {
+  border: tomato;
+  padding: auto;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-top: 1px solid lightgrey;
+  padding-left: 10px;
+}
+.left-content a {
+  color: black;
+  text-decoration: none;
+}
+.formP form {
+  margin: 15% 0 0 25%;
+  background-color: papayawhip;
+  width: 50%;
+  border: lightgray 1px solid;
+}
+.formP form img{
+    padding-right: 2%;
+    padding-left: 2%;
+  }
+  .formP form a:hover{
+    color: red;
+  }
+.formP form h1 {
+  color: rgb(201, 186, 57);
+  text-align: center;
+}
+.more-bot {
+  padding-bottom: 10%;
+}
+.formU form {
+    margin: 20% 0 0 25%;
+    background-color: papayawhip;
+    width: 50%;
+    border: lightgray 1px solid;
+  }
+  .formU form img{
+    padding-right: 2%;
+    padding-left: 2%;
+  }
+  .formU form a:hover{
+    color: red;
+  }
+.formU form h1 {
+  color: rgb(201, 186, 57);
+  text-align: center;
+}
+.more-bot2 {
+  padding-bottom: 10%;
+}

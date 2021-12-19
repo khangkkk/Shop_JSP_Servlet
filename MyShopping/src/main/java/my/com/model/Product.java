@@ -3,6 +3,7 @@ package my.com.model;
 public class Product {
 	private int id_pro;
 	private int id_cat;
+	private String name_cat;
 	private String name_pro;
 	private String images;
 	private int quantity;
@@ -19,6 +20,19 @@ public class Product {
 		super();
 		this.id_pro = id_pro;
 		this.id_cat = id_cat;
+		this.name_pro = name_pro;
+		this.images = images;
+		this.quantity = quantity;
+		this.price = price;
+		this.supplier = supplier;
+		this.infor = infor;
+	}
+
+	public Product(int id_pro, String name_cat, String name_pro, String images, int quantity, Double price,
+			String supplier, String infor) {
+		super();
+		this.id_pro = id_pro;
+		this.name_cat = name_cat;
 		this.name_pro = name_pro;
 		this.images = images;
 		this.quantity = quantity;
@@ -91,10 +105,19 @@ public class Product {
 		this.infor = infor;
 	}
 
+	public String getName_cat() {
+		return name_cat;
+	}
+
+	public void setName_cat(String name_cat) {
+		this.name_cat = name_cat;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [id_pro=" + id_pro + ", id_cat=" + id_cat + ", name_pro=" + name_pro + ", images=" + images
-				+ ", quantity=" + quantity + ", price=" + price + ", supplier=" + supplier + ", infor=" + infor + "]";
+		return "Product [id_pro=" + id_pro + ", id_cat=" + id_cat + ", name_cat=" + name_cat + ", name_pro=" + name_pro
+				+ ", images=" + images + ", quantity=" + quantity + ", price=" + price + ", supplier=" + supplier
+				+ ", infor=" + infor + "]";
 	}
 
 }

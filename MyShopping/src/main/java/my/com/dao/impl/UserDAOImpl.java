@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import my.com.dao.UserDAO;
 import my.com.model.User;
@@ -82,7 +84,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public boolean insertUser(User user) throws SQLException {
 		int row = 0;
-		String sql = "INSERT INTO Account VALUES (?,?,?,?)";
+		String sql = "INSERT INTO Account VALUES (?,?,?,?,'','','','','','')";
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
@@ -111,7 +113,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public boolean updateUser(User user) throws SQLException {
 		int row = 0;
-		String sql = "UPDATE AccountInformation \r\n"
+		String sql = "UPDATE Account \r\n"
 				+ "SET fullname = ?, dob = ?, gender = ?, email = ?, phone = ?, [address] = ?\r\n"
 				+ "WHERE id_user = ?";
 		try {
@@ -174,7 +176,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User getDetailInformationAccount(String username) throws SQLException {
 		String sql = "SELECT a.id_user, username, fullname, dob, gender, email, phone,[address]\r\n"
-				+ "FROM Account a, AccountInformation a1\r\n" + "WHERE a.username = ?";
+				+ "FROM Account a\r\n" + "WHERE a.username = ?";
 		User u = null;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -201,6 +203,98 @@ public class UserDAOImpl implements UserDAO {
 			e.printStackTrace();
 		}
 		return u;
+	}
+
+	@Override
+	public List<User> getAllUser(int row) throws SQLException{
+		String sql="SELECT a.id_user, username, fullname, dob, gender, email, phone,[address]\r\n"
+				+ "FROM Account a\r\n"
+				+ "ORDER BY id_user offset ? ROWS FETCH NEXT 3 ROWS only";
+		List<User> lst =new ArrayList<User>();
+		User u =null;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, row);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				u = new User();
+				u.setIdUser(rs.getInt("id_user"));
+				u.setUsername(rs.getString("username"));
+				u.setFullname(rs.getString("fullname"));
+				u.setDob(rs.getString("dob"));				
+				if("true".equals(rs.getString("gender"))) {
+					u.setGender("Male");
+				}else {
+					u.setGender("Female");
+				}
+				u.setEmail(rs.getString("email"));
+				u.setPhone(rs.getString("phone"));
+				u.setAddress(rs.getString("address"));
+				lst.add(u);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return lst;
+	}
+
+	@Override
+	public int countTotalUser() throws SQLException {
+		String sql="SELECT COUNT(*)\r\n"
+				+ "from Account";
+		int count = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+
+		return count;
+	}
+
+	@Override
+	public boolean deleteUser(String id) throws SQLException {
+		int row = 0;
+		String sql = "DELETE FROM Account WHERE id_user = ?";
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			row = ps.executeUpdate();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return row > 0;
 	}
 
 }

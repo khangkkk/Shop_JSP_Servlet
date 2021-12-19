@@ -27,12 +27,14 @@
 			<form action="<%=request.getContextPath()%>/registerAccount"
 				method="POST">
 				<li style="color: red"><%=err%></li> Username
-				<li><input type="text" class="text" value="${uname}" name="username"
-					required><a href="#" class=" icon2 user2"></a></li> Password
-				<li><input type="password" value="" name="password" required><a
-					href="#" class=" icon2 lock2"></a></li> Re-Password
-				<li><input type="password" value="" name="password" required><a
-					href="#" class=" icon2 lock2"></a></li>
+				<li><input type="text" class="text" value="${uname}"
+					name="username" pattern="[a-zA-Z0-9]{4,24}" required><a
+					href="#" class=" icon2 user2"></a></li> Password
+				<li><input type="password" value="" name="password" required
+					pattern="[.]{4,24}"><a href="#" class=" icon2 lock2"></a></li>
+				Re-Password
+				<li><input type="password" value="" name="password" required
+					pattern="[.]{4,24}"><a href="#" class=" icon2 lock2"></a></li>
 
 				<div class="p-container">
 					<label class=""><input type="checkbox" name="checkbox"><i></i>I

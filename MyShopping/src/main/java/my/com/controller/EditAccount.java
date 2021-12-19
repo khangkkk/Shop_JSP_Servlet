@@ -1,7 +1,6 @@
 package my.com.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -9,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import my.com.dao.UserDAO;
 import my.com.dao.impl.UserDAOImpl;
@@ -37,7 +35,6 @@ public class EditAccount extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		UserDAO userDAO = new UserDAOImpl();
 		String un = request.getParameter("username");
 
@@ -57,23 +54,23 @@ public class EditAccount extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		UserDAO userDAO=new UserDAOImpl();
-		String id=request.getParameter("id");
-		String username=request.getParameter("username");
-		String fullname=request.getParameter("fullname");
-		String dob=request.getParameter("dob");
-		String gender=request.getParameter("gender");
-		String email=request.getParameter("email");
-		String phone=request.getParameter("phone");
-		String address=request.getParameter("address");
-		int idU=Validation.convert(id);
-		User u=new User(idU, username, fullname, dob, gender, email, phone, address);
+		UserDAO userDAO = new UserDAOImpl();
+		String id = request.getParameter("id");
+		String username = request.getParameter("username");
+		String fullname = request.getParameter("fullname");
+		String dob = request.getParameter("dob");
+		String gender = request.getParameter("gender");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		int idU = Validation.convert(id);
+		User u = new User(idU, username, fullname, dob, gender, email, phone, address);
 		try {
-			if(userDAO.updateUser(u)) {
+			if (userDAO.updateUser(u)) {
 				request.setAttribute("mess", "Update information successfully!");
 				request.setAttribute("u", u);
 				request.getRequestDispatcher("/view/updateAccount.jsp").forward(request, response);
-			}else {
+			} else {
 				request.setAttribute("mess", "Update information failed!");
 				request.getRequestDispatcher("/view/updateAccount.jsp").forward(request, response);
 			}

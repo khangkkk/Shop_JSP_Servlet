@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 			String hash_p = Validation.encyptPassword(password, salt_p);
 			user = new User(username, salt_p, hash_p, 0);
 			if (userDAO.isAccountExist(user) != null) {
-				HttpSession session = request.getSession();
+				// HttpSession session = request.getSession();
 
 				Cookie loginCooki = new Cookie("username", username);
 				Cookie p = new Cookie("password", password);
@@ -69,7 +69,11 @@ public class Login extends HttpServlet {
 				}
 				response.addCookie(loginCooki);
 				response.addCookie(p);
-				request.getRequestDispatcher("/view/home.jsp").forward(request, response);
+				if (user.getUsername().equals("admin")) {
+					request.getRequestDispatcher("/view/homeA.jsp").forward(request, response);
+				} else {
+					request.getRequestDispatcher("/view/home.jsp").forward(request, response);
+				}
 			} else {
 				request.setAttribute("err", "Username or password incorrect!");
 				request.getRequestDispatcher("/view/login.jsp").forward(request, response);

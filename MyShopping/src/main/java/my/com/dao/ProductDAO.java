@@ -19,7 +19,7 @@ public interface ProductDAO {
 	public boolean updateProduct(Product product) throws SQLException;
 
 	// delete a product
-	public boolean deleteProduct(int idProduct) throws SQLException;
+	public boolean deleteProduct(String idProduct) throws SQLException;
 
 	//
 	public List<Product> searchProduct(String nameProduct, String nameCategory) throws SQLException;
@@ -27,4 +27,9 @@ public interface ProductDAO {
 	//
 	public List<Product> getListByPage(List<Product> lst, int start, int end) throws SQLException;
 
+	//
+	public List<Product> getAllProduct(int row) throws SQLException;
+	
+	//
+	public int countTotalProduct() throws SQLException;
 }
