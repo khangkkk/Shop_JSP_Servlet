@@ -48,7 +48,7 @@
 			</div>
 			<div class="right-content">
 				<img src="<%=request.getContextPath()%>/resource/images/plus.png" alt=""
-					style="width: 12px; height: 12px;"><a href="http://">Add
+					style="width: 12px; height: 12px;"><a href="<%=request.getContextPath()%>/addProduct">Add
 					product</a>
 			</div>
 			<div class="container">
@@ -82,7 +82,7 @@
 									<th>${p.supplier}</th>
 									<th>${p.infor}</th>
 									<td><i class="fa fa-edit" aria-hidden="true"></i> <a
-										href="#"> Edit</a>
+										href="<%=request.getContextPath()%>/editProduct?id=${p.id_pro}"> Edit</a>
 									<i class="fa fa-trash" aria-hidden="true"></i> <a
 										href="<%=request.getContextPath()%>/deleteProduct?id=${p.id_pro}" onclick="return deleteProduct();"> Delete</a></td>
 								</tr>

@@ -32,7 +32,7 @@
 					<form action="#">
 						<h1>Product</h1>
 						<h3>
-							<a href="<%=request.getContextPath()%>/"><img
+							<a href="<%=request.getContextPath()%>/addProduct"><img
 								src="<%=request.getContextPath()%>/resource/images/plus.png" alt="" style="width: 14px; height: 14px" />Add
 								Product</a>
 						</h3>

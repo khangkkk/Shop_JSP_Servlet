@@ -30,16 +30,15 @@
 			</div>
 			<form action="<%=request.getContextPath()%>/editAccount" method="POST">
 				<li style="color: red">${mess}</li> Username
-				<li><input type="text" class="text"
-					value="${u.username}" readonly name="username"><a
-					href="#" class=" icon2 user2"></a></li>Full name
-					<li><input type="text" value="${u.fullname}"
+				<li><input type="text" class="text" value="${u.username}"
+					readonly name="username"><a href="#" class=" icon2 user2"></a></li>Full
+				name
+				<li><input type="text" value="${u.fullname}"
 					onfocus="this.value = '';"
 					onblur="if (this.value == '') {
                                            this.value = '${u.fullname}';}"
-					name="fullname"><a href="#" class=" icon2 user2"></a></li>
-					
-					 Date of birth
+					name="fullname"><a href="#" class=" icon2 user2"></a></li> Date of
+				birth
 				<li><input type="date" value="${u.dob}"
 					onfocus="this.value = '';"
 					onblur="if (this.value == '') {

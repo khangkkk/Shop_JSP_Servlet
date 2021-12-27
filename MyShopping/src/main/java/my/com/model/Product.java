@@ -41,6 +41,18 @@ public class Product {
 		this.infor = infor;
 	}
 
+	public Product(int id_cat, String name_pro, String images, int quantity, Double price, String supplier,
+			String infor) {
+		super();
+		this.id_cat = id_cat;
+		this.name_pro = name_pro;
+		this.images = images;
+		this.quantity = quantity;
+		this.price = price;
+		this.supplier = supplier;
+		this.infor = infor;
+	}
+
 	public int getId_pro() {
 		return id_pro;
 	}

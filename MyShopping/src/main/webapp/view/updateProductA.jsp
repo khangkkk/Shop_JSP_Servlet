@@ -4,8 +4,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resource/css/styleAdmin.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resource/css/styleAdmin.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,35 +42,41 @@
 					<div class="title">
 						<span>Update Product</span>
 					</div>
-					<form action="#">
+					<form action="<%=request.getContextPath()%>/editProduct" method="POST">
 						Category
 						<div class="row">
-							<input type="text" name="cat" placeholder="Enter the category" />
+							<select name="categoryP" id="">
+								<c:forEach items="${lstCat}" var="c">
+									<option value="${c.id_cat}">${c.name_cat}</option>
+								</c:forEach>
+							</select>
 						</div>
 						Name of product
 						<div class="row">
-							<input type="text" name="cat"  />
+							<input type="text" name="nameP" value="${product.name_pro}" placeholder="Enter the name" />
 						</div>
 						Image
 						<div class="row">
-							<input type="text" name="cat"  />
+							<input type="text" name="image" value="${product.images}"/>
 						</div>
 						Quantity
 						<div class="row">
-							<input type="number" name="cat" pattern="[0-9]+"/>
+							<input type="number" name="quantity" value="${product.quantity}" placeholder="Enter the quantity" pattern="[0-9]+"/>
 						</div>
 						Price
 						<div class="row">
-							<input type="number" name="cat"  pattern="[0-9]+"/>
+							<input type="number" name="price" value="${product.price}" pattern="[0-9]+"/>
 						</div>
 						Manufacturer
 						<div class="row">
-							<input type="text" name="cat"  />
+							<input type="text" name="manufacturer" value="${product.supplier}" />
 						</div>
 						Information
 						<div class="row">
-							<input type="text" name="infor" />
+							<input type="text" name="infor" value="${product.infor}" />
 						</div>
+						<input type="hidden" name="idProduct" value="${product.id_pro}" />
+
 						<button class="button">Update</button>
 					</form>
 				</div>

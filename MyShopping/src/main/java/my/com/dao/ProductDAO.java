@@ -21,15 +21,15 @@ public interface ProductDAO {
 	// delete a product
 	public boolean deleteProduct(String idProduct) throws SQLException;
 
-	//
+	//search product by name of product or name of category
 	public List<Product> searchProduct(String nameProduct, String nameCategory) throws SQLException;
 
-	//
+	//get list of products by paging
 	public List<Product> getListByPage(List<Product> lst, int start, int end) throws SQLException;
 
-	//
+	//get list of products by paging( use offset fetch sql)
 	public List<Product> getAllProduct(int row) throws SQLException;
 	
-	//
+	//count all product
 	public int countTotalProduct() throws SQLException;
 }
